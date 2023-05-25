@@ -17,6 +17,13 @@ public interface RelationshipRepository extends JpaRepository<Relationship, Long
             "where user_table.id = :id and relationship.status = 2", nativeQuery = true)
     Iterable<Relationship> findAllFriendByUserId(@Param("id") Long id);
 
+    @Query(value = "select relationship.id, user1_id, user2_id, relationship.status  from user_table join relationship on (user_table.id = relationship.user2_id)" +
+            "where user_table.id = :id and relationship.status = 1", nativeQuery = true)
+    Iterable<Relationship> findAllFriendRequestByUserId(@Param("id") Long id);
+    @Query(value = "select relationship.id, user1_id, user2_id, relationship.status  from user_table join relationship on (user_table.id = relationship.user1_id)" +
+            "where user_table.id = :id and relationship.status = 1", nativeQuery = true)
+    Iterable<Relationship> findAllFriendRequestSentByUserId(@Param("id") Long id);
+
     @Query(value = "select relationship.id, user1_id, user2_id, relationship.status from relationship\n" +
             "where (user1_id in (\n" +
             "    select t1.userTemp from (\n" +

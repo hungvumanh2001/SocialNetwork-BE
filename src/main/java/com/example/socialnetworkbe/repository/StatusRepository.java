@@ -12,7 +12,7 @@ public interface StatusRepository extends JpaRepository<Status, Long> {
     Status findLastStatus();
 
     @Query(value = "select * from status where owner_id = :id and status <> 0 order by create_at desc", nativeQuery = true)
-    Iterable<Status> findAllByOwner(@Param("id") Long id);
+    Iterable<Status>  findAllByOwner(@Param("id") Long id);
 
     @Query(value = "select *\n" +
             " from status\n" +

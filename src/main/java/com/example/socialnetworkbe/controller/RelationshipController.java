@@ -64,6 +64,18 @@ public class RelationshipController {
         return new ResponseEntity<>(relationships, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/find-all-friend-request-by-userId")
+    public ResponseEntity<Iterable<Relationship>> findAllFriendRequestByUserId(@PathVariable Long id) {
+        Iterable<Relationship> relationships = relationshipService.findAllFriendRequestByUserId(id);
+        return new ResponseEntity<>(relationships, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/find-all-friend-request-sent-by-userId")
+    public ResponseEntity<Iterable<Relationship>> findAllFriendRequestSentByUserId(@PathVariable Long id) {
+        Iterable<Relationship> relationships = relationshipService.findAllFriendRequestSentByUserId(id);
+        return new ResponseEntity<>(relationships, HttpStatus.OK);
+    }
+
     @GetMapping("/find-mutual-friends")
     public ResponseEntity<Iterable<Relationship>> findMutualFriend(@RequestParam Long currentId,@RequestParam Long id) {
         Iterable<Relationship> relationships = relationshipService.findMutualFriend(currentId,id);

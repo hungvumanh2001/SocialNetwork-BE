@@ -19,6 +19,9 @@ public interface RelationshipService {
 
     Iterable<Relationship> findAllFriendByUserId(Long id);
 
+    Iterable<Relationship> findAllFriendRequestByUserId(Long id);
+    Iterable<Relationship> findAllFriendRequestSentByUserId(Long id);
+
     Iterable<Relationship> findMutualFriend(@Param("currentId") Long currentId, @Param("id") Long id);
 }
 

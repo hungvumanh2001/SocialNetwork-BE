@@ -40,6 +40,16 @@ public class RelationshipServiceImpl implements RelationshipService {
     }
 
     @Override
+    public Iterable<Relationship> findAllFriendRequestByUserId(Long id) {
+        return relationshipRepository.findAllFriendRequestByUserId(id);
+    }
+
+    @Override
+    public Iterable<Relationship> findAllFriendRequestSentByUserId(Long id) {
+        return relationshipRepository.findAllFriendRequestSentByUserId(id);
+    }
+
+    @Override
     public Iterable<Relationship> findMutualFriend(Long currentId, Long id) {
         return relationshipRepository.findMutualFriend(currentId,id);
     }

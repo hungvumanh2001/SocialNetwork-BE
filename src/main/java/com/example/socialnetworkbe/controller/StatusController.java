@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Optional;
 
 @RestController
@@ -39,6 +40,7 @@ public class StatusController {
         listStatus.addAll(statusOwner);
         listStatus.addAll(statusFriend);
         listStatus.addAll(statusStranger);
+        listStatus.sort(Comparator.comparing(Status::getCreateAt).reversed());
         result.add(listStatus);
         ArrayList<Iterable<Image>> listImage = new ArrayList<>();
         ArrayList<Integer> listNumberOfLike = new ArrayList<>();

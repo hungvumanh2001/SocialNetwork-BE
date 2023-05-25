@@ -3,6 +3,7 @@ package com.example.socialnetworkbe.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "attachments")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,8 +11,10 @@ public class Image {
 
     @ManyToOne
     private Status status;
-
+    @Column(name = "link")
     private String image;
+
+    private String type;
 
     public Image() {
     }
@@ -38,5 +41,13 @@ public class Image {
 
     public String getImage() {
         return image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
