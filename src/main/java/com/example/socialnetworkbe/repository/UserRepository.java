@@ -14,5 +14,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
     @Query("select u from User u where UPPER(u.fullname) like ?1 and u.id <> ?2")
-    List<User> findByKeyword(String key, Long id);
+    Iterable<User> findByKeyword(String key, Long id);
 }

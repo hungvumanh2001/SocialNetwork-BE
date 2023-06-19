@@ -220,8 +220,8 @@ public class UserController {
     }
 
     @GetMapping("/users/findByKeyword/{id}")
-    public ResponseEntity<List<User>> findByKeyword(@RequestParam String key,@PathVariable Long id) {
-        List<User> users = userService.findByKeyword(key, id);
+    public ResponseEntity<Iterable<User>> findByKeyword(@RequestParam String key,@PathVariable Long id) {
+        Iterable<User> users = userService.findByKeyword(key, id);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 

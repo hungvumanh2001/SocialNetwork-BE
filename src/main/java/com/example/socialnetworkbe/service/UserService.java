@@ -26,6 +26,6 @@ public interface UserService extends UserDetailsService {
 
     boolean isCorrectConfirmPassword(User user);
 
-    List<User> findByKeyword(String key, Long id);
+    Iterable<User> findByKeyword(String key, Long id);
 
 }

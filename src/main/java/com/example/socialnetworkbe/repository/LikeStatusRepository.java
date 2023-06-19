@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LikeStatusRepository extends JpaRepository<LikeStatus, Long> {
-    @Query(value = "select count(id) from like_status where status_id = :id group by status_id", nativeQuery = true)
+    @Query(value = "select count(id) from status_likes where status_id = :id group by status_id", nativeQuery = true)
     Integer findNumberOfLikeByStatus(@Param("id") Long statusId);
     LikeStatus findByUserLikeIdAndAndStatusId(Long idUser,Long idStatus);
 }

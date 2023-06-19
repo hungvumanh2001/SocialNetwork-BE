@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) {
@@ -92,7 +94,7 @@ public class UserServiceImpl implements UserService {
         boolean isCorrectUser = false;
         for (User currentUser : users) {
             if (currentUser.getUsername().equals(user.getUsername())
-                    && user.getPassword().equals(currentUser.getPassword())&&
+                    && user.getPassword().equals(currentUser.getPassword()) &&
                     currentUser.isEnabled()) {
                 isCorrectUser = true;
             }
@@ -116,20 +118,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isCorrectConfirmPassword(User user) {
         boolean isCorrentConfirmPassword = false;
-        if(user.getPassword().equals(user.getConfirmPassword())){
+        if (user.getPassword().equals(user.getConfirmPassword())) {
             isCorrentConfirmPassword = true;
         }
         return isCorrentConfirmPassword;
     }
 
     @Override
-    public List<User> findByKeyword(String key, Long id) {
-        String keyword = "%"+key.toUpperCase()+"%";
-        List<User> userList = userRepository.findByKeyword(keyword, id);
-        if(userList != null && userList.size()>0){
-            return userList;
-        }
-        return null;
+    public Iterable<User> findByKeyword(String key, Long id) {
+        String keyword = "%" + key.toUpperCase() + "%";
+        Iterable<User> userList = userRepository.findByKeyword(keyword, id);
+        return userList;
     }
 
 }

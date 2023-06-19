@@ -3,6 +3,7 @@ package com.example.socialnetworkbe.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "status_likes")
 public class LikeStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +13,7 @@ public class LikeStatus {
     private Status status;
 
     @ManyToOne
+    @JoinColumn(name = "like_user_id")
     private User userLike;
 
     public LikeStatus() {
