@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LikeCommentRepository extends JpaRepository<LikeComment, Long> {
     LikeComment findByUserLikeIdAndAndCommentId(Long idUser, Long idComment);
-    @Query(value = "select count(id) from like_comment where comment_id = :id group by comment_id", nativeQuery = true)
+    @Query(value = "select count(id) from comment_likes where comment_id = :id group by comment_id", nativeQuery = true)
     Integer findNumberOfLikeCommentOfComment(@Param("id") Long commentId);
 }
